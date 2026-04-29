@@ -20,9 +20,9 @@ Your job is to look at result photos uploaded by the teacher and answer students
 - Be professional and encouraging. If a student failed, be supportive.
 """
 
-# FIXED: Changed model name from gemini-1.5-flash-latest to gemini-1.5-flash
+# UPDATED: Using the latest Gemini 3 Flash model
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
+    model_name="gemini-3-flash",
     system_instruction=SYSTEM_RULES
 )
 
@@ -90,7 +90,7 @@ def webhook():
             elif msg_type == "text":
                 prompt = msg_data["text"]["body"]
                 # AI looks at the master results and answers the student
-                ai_query = f"Based on these results: {MASTER_RESULTS}. Answer this student: {prompt}"
+                ai_query = f"System: Use these results: {MASTER_RESULTS}. Answer this student: {prompt}"
                 response = model.generate_content(ai_query)
                 send_wa(from_num, response.text)
 
