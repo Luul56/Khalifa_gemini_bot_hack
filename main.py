@@ -12,7 +12,6 @@ genai.configure(api_key=os.environ.get("GEN_API"))
 phone_id = os.environ.get("PHONE_ID")
 
 # --- 2. THE AI BRAIN SETUP ---
-# This holds the school rules and personality
 SYSTEM_RULES = """
 You are the Khalifa High School Result Agent. 
 Your job is to look at result photos uploaded by the teacher and answer students.
@@ -21,8 +20,9 @@ Your job is to look at result photos uploaded by the teacher and answer students
 - Be professional and encouraging. If a student failed, be supportive.
 """
 
+# FIXED: Changed model name from gemini-1.5-flash-latest to gemini-1.5-flash
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash-latest",
+    model_name="gemini-1.5-flash",
     system_instruction=SYSTEM_RULES
 )
 
